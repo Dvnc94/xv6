@@ -532,3 +532,32 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+//hello
+void
+print_hello(void)
+{
+  cprintf("Hello from the kernel space\n");
+}
+
+void
+get_info(int param)
+{
+  argint(0,&param);
+  cprintf("%d - Inside system call!\n",param);
+  if(param == 1)
+  {
+    struct proc *p;
+    int count = 0;
+
+    acquire(&ptable.lock);
+
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+    {
+      if(p->state != UNUSED)
+          count++;
+    }
+    cprintf("No. of processes running - %d\n",count);
+    release(&ptable.lock);
+  }
+}

@@ -89,3 +89,17 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+//hello
+int sys_hello(void)
+{
+  print_hello();
+  return 0;
+}
+
+int
+sys_info(int param)
+{
+  get_info(param);
+  return 0;
+}
