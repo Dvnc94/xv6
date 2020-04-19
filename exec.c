@@ -99,6 +99,7 @@ exec(char *path, char **argv)
   curproc->sz = sz;
   curproc->tf->eip = elf.entry;  // main
   curproc->tf->esp = sp;
+  curproc->syscall_count = 0;  ///******* JASON CS202
   switchuvm(curproc);
   freevm(oldpgdir);
   return 0;

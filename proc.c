@@ -550,6 +550,7 @@ get_info(int param)
     struct proc *p;
     int count = 0;
 
+
     acquire(&ptable.lock);
 
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
@@ -559,5 +560,19 @@ get_info(int param)
     }
     cprintf("No. of processes running - %d\n",count);
     release(&ptable.lock);
+  }
+  else if(param == 2)
+  {
+    struct proc*p = myproc();
+    cprintf("No. of system calls for process: %d\n", p->syscall_count);
+  }
+  else if(param == 3)
+  { 
+    struct proc *p = myproc();
+    cprintf("No. of pages in memory for process: %d\n", p->sz/4096);
+  }
+  else
+  {
+    cprintf("Invalid argument.!\n");
   }
 }
