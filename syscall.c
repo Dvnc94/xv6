@@ -147,5 +147,6 @@ syscall(void)
     curproc->tf->eax = -1;
   }
   curproc->syscall_count++;
+  //cprintf("syscall num = %d\n", num);
 
 }

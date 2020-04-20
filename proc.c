@@ -544,12 +544,10 @@ void
 get_info(int param)
 {
   argint(0,&param);
-  cprintf("%d - Inside system call!\n",param);
   if(param == 1)
   {
     struct proc *p;
     int count = 0;
-
 
     acquire(&ptable.lock);
 
@@ -563,7 +561,7 @@ get_info(int param)
   }
   else if(param == 2)
   {
-    struct proc*p = myproc();
+    struct proc *p = myproc();
     cprintf("No. of system calls for process: %d\n", p->syscall_count);
   }
   else if(param == 3)
